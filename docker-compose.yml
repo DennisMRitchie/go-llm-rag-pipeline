@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  go-rag:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - GRPC_NLP_ADDR=python-nlp:50051
+    depends_on:
+      - python-nlp
+
+  python-nlp:
+    build: ./python_nlp
+    ports:
+      - "50051:50051"
+
